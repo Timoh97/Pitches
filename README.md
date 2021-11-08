@@ -20,7 +20,7 @@ pitches
 
 ## BEHAVIORAL DRIVEN DEVELOPMENT
 
-* The user is able to view all categories and also go ahead and go ahead to either upvote or downvote them.
+* The user is able to view all categories and also go ahead to either upvote or downvote them.
 
 ## SKILLS
 * HTML
