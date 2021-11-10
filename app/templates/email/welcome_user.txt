@@ -1,0 +1,3 @@
+Hello {{user.username}}
+If given your 1 minute to pitch what would you do?
+Thank you for signing up. 

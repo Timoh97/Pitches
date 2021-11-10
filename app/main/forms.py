@@ -1,17 +1,19 @@
+from wtforms import StringField,TextAreaField, SubmitField, SelectField
+from wtforms.validators import Required, Length
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField
-from wtforms.fields.simple import TextAreaField
-from wtforms.validators import Required, Email, Length, EqualTo
-from ..models import User
-from wtforms import ValidationError
- 
- 
- 
-class CategoryForm(FlaskForm):
-   name = StringField('Category Name', validators=[Required(), Length(1, 64)])
-   submit = SubmitField('Submit')
- 
+
+
+class UpdateProfile(FlaskForm):
+    bio = TextAreaField('Tell us about you.',validators = [Required()])
+    submit = SubmitField('Submit')
+
+
 class PostForm(FlaskForm):
-   title = StringField('Title', validators=[Required(), Length(1, 64)])
-   content = TextAreaField('Body', validators=[Required()])
-   submit = SubmitField('Submit')
+    post_title = StringField('Post title', validators=[Required()])
+    content = TextAreaField('Body', validators=[Required()])
+    category = SelectField('Post category',choices=[('Select a category','Select a category'),('Pickup lines', 'Pickup lines'),('Interview','Interview'),('Product','Product'),('Promotions','Promotions')], validators=[Required()])
+    submit = SubmitField('Submit')
+
+class CommentForm(FlaskForm):
+    content = TextAreaField('Body', validators=[Required()])
+    submit = SubmitField('Submit')

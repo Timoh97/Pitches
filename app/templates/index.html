@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<body class="container">
+    
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ message }}
+    </div>
+    {% endfor %}
+
+  <div class="text-center ">
+      
+    <h2 class="success" style="color:yellow; font-style: oblique; font-weight:600;"> Rock and pitch </h2>
+    <hr>
+    
+
+    
+  </div>
+    
+  <div class="container-fluid pitch">
+    <div class="row">
+      {% for post in posts %}
+        <div class="col-md-4">
+          <div class="text-center ">
+            <div class=" cards">
+              <h4 class="text-black title">{{ post.title }}</h4>
+              <p>Category : {{ post.category }}</p>
+              <p class="card-text">Pitch : {{ post.content [:50]}}...</p>
+              <p>Posted by: {{post.user.username}}</p>
+              <p>Posted on : {{post.date_posted.strftime('%Y-%m-%d')}}</p>
+              <div class="col-md-4 button">
+                <a href="{{ url_for('main.post_details', id = post.id)}}">comment</a>
+              </div>
+              <div class="col-md-4 upvote button">
+                <a href="{{url_for('main.like',id = post.id)}}">Upvotes: {{post.upvote.count()}}</a>
+              </div>
+              <div class="col-md-4 downvote ">
+                <a href="{{url_for('main.dislike',id = post.id)}}"> <i class="fa fa-thumbs-down"></i> Downvotes:{{post.downvote.count()}}</a>
+              </div>
+
+            </div>
+           
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+
+{% endblock%}

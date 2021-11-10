@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" type="text/css">
+<body class="container" style="color:yellow; font-style: oblique; border-radius:20px; font-weight:600;">
+  {% block content %}
+<div style="color:brown;font-size:x-large;background-color: burlywood;border-radius:20px; padding: 2em; font-style: oblique; font-weight:600;">
+    <div class="row">
+      <div class= "col-md-2"> </div>
+      <div class="col-md-8">
+      
+      {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+        </div>
+      {% endfor %}
+      
+      {{wtf.quick_form(login_form)}}
+      <p style="color:brown;font-size:x-large; font-style: oblique; font-weight:600;"> Don't have an Account? <a href="{{url_for('auth.register')}}">Sign Up Here</a></p>
+     </div>
+     <div clas="col-md-2"> </div>
+    </div>
+</div>
+
+<p class="text-center" style="color:brown;font-size:x-large; font-style: oblique; font-weight:600;">Tech enthusiasts@Timoh</p>
+<p class="text-center" style="color:brown;font-size:x-large;font-style: oblique; font-weight:600;">Phone number:+254791417147</p>
+{% endblock%}
+</body>
